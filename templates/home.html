@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="{{url_for('static', filename='favicon.ico')}}">
+
+    <title>download youtube</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="//getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet"> -->
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="//rawgithub.com/twbs/bootstrap/master/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <script type="text/html" id="tpllist">
+      <a href="<%=url%>"><h3><%=title%></h3></a>
+      <ul>
+      <% for ( var i = 0; i < videos.length; i++ ) { %>
+        <li><a href="/download/<%=id%>/<%=videos[i].resolution%>/<%=videos[i].extension%>">
+          <%=videos[i].resolution%> <%=videos[i].extension%>,
+          <%=videos[i].video_codec%>@<%=videos[i].video_bitrate%>kbit/s,
+          <%=videos[i].audio_codec%>@<%=videos[i].audio_bitrate%>kbit/s,
+          profile: <%=videos[i].profile%>
+        </a></li>
+      <% } %>
+        <!-- <li><a href="#">Clear search</a></li> -->
+      </ul>
+    </script>
+
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Home</a></li>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+        <h3 class="text-muted">
+          <img style="vertical-align:"
+               src="{{url_for('static', filename='img/icon-24x24.png')}}">
+          YouOwn
+        </h3>
+      </div>
+
+      <hr>
+
+      <div class="jumbotron text-center">
+        <h1>YouTube download</h1>
+        <p class="lead">
+            Enter a video
+            <abbr class="initialism" title="yes a youtube link, eg. https://www.youtube.com/watch?v=U1uJVrsS_ZU">URL</abbr>
+            below
+        </p>
+        <div class="input-group">
+          <span class="input-group-btn">
+            <div id="search-status" class="btn btn-default">
+              <i class="glyphicon glyphicon-cog"></i>
+              <span>Initializing...</span>
+            </div>
+          </span>
+          <input id="search-field" type="text" class="form-control" tabindex="1">
+        </div>
+        <div id="search-results">
+        </div>
+      </div>
+
+      <div class="row marketing text-center">
+        <div class="col-lg-6">
+          <h4>Open-source</h4>
+          <p>Fork me at <a href="www.github.com">github</a>.</p>
+
+          <h4>Straight forward</h4>
+          <p>Copy/paste your youtube video url in the search field.</p>
+        </div>
+
+        <div class="col-lg-6">
+          <h4>Compatible</h4>
+          <p>Works on any laptop, tablet or mobile.</p>
+
+          <h4>Reusable</h4>
+          <p>The API is open and accessible, <a href="/api/search/U1uJVrsS_ZU">see by yourself</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="footer">
+        <p>&copy; Company 2014</p>
+      </div>
+
+    </div> <!-- /container -->
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="{{url_for('static', filename='js/main.js')}}"></script>
+  </body>
+</html>
