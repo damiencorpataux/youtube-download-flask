@@ -11,14 +11,14 @@ def home():
 def search_by_id(id):
     return flask.jsonify({
         'error': None,
-        'data': youtube.videos(id)
+        'data': youtube.video(id)
     })
 
 @app.route('/download/<id>/')
 @app.route('/download/<id>/<resolution>/')
 @app.route('/download/<id>/<resolution>/<extension>/')
 def download_by_id(id, resolution=None, extension=None):
-    stream = youtube.streamurl(id, resolution, extension)
+    stream = youtube.stream_url(id, resolution, extension)
     binary = requests.get(stream['url'], stream=True)
     return flask.Response(
         binary,

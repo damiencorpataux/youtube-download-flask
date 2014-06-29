@@ -27,16 +27,16 @@
   </head>
 
   <body>
-
+    
     <script type="text/html" id="tpllist">
       <a href="<%=url%>"><h3><%=title%></h3></a>
       <ul>
-      <% for ( var i = 0; i < videos.length; i++ ) { %>
-        <li><a href="/download/<%=id%>/<%=videos[i].resolution%>/<%=videos[i].extension%>">
-          <%=videos[i].resolution%> <%=videos[i].extension%>,
-          <%=videos[i].video_codec%>@<%=videos[i].video_bitrate%>kbit/s,
-          <%=videos[i].audio_codec%>@<%=videos[i].audio_bitrate%>kbit/s,
-          profile: <%=videos[i].profile%>
+      <% for ( var i = 0; i < streams.length; i++ ) { %>
+        <li><a href="/download/<%=id%>/<%=streams[i].resolution%>/<%=streams[i].extension%>">
+          <%=streams[i].resolution%> <%=streams[i].extension%>,
+          <%=streams[i].video_codec%>@<%=streams[i].video_bitrate%>kbit/s,
+          <%=streams[i].audio_codec%>@<%=streams[i].audio_bitrate%>kbit/s,
+          profile: <%=streams[i].profile%>
         </a></li>
       <% } %>
         <!-- <li><a href="#">Clear search</a></li> -->
@@ -59,13 +59,15 @@
 
       <hr>
 
-      <div class="jumbotron text-center">
-        <h1>YouTube download</h1>
-        <p class="lead">
-            Enter a video
-            <abbr class="initialism" title="yes a youtube link, eg. https://www.youtube.com/watch?v=U1uJVrsS_ZU">URL</abbr>
-            below
-        </p>
+      <div class="jumbotron">
+        <div class="text-center">
+          <h1>YouTube download</h1>
+          <p class="lead">
+              Enter a video
+              <abbr class="initialism" title="yes a youtube link, eg. https://www.youtube.com/watch?v=U1uJVrsS_ZU">URL</abbr>
+              below
+          </p>
+        </div>
         <div class="input-group">
           <span class="input-group-btn">
             <div id="search-status" class="btn btn-default">
@@ -82,7 +84,7 @@
       <div class="row marketing text-center">
         <div class="col-lg-6">
           <h4>Open-source</h4>
-          <p>Fork me at <a href="www.github.com">github</a>.</p>
+          <p>Yes, fork me at <a href="https://github.com/damiencorpataux/youtube-download-flask">github</a>.</p>
 
           <h4>Straight forward</h4>
           <p>Copy/paste your youtube video url in the search field.</p>
@@ -90,17 +92,17 @@
 
         <div class="col-lg-6">
           <h4>Compatible</h4>
-          <p>Works on any laptop, tablet or mobile.</p>
+          <p>Works on any destop computer, laptop, tablet or mobile.</p>
 
           <h4>Reusable</h4>
-          <p>The API is open and accessible, <a href="/api/search/U1uJVrsS_ZU">see by yourself</a></p>
+          <p>The API is open and accessible, <a href="/api/search/U1uJVrsS_ZU">see by yourself</a>.</p>
         </div>
       </div>
 
       <hr>
 
       <div class="footer">
-        <p>&copy; Company 2014</p>
+        <p>&copy; Nobody 2014</p>
       </div>
 
     </div> <!-- /container -->
