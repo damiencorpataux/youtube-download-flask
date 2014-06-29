@@ -7,22 +7,16 @@ class NotFoundError(Exception):
 class InvalidIdError(Exception):
     pass
 
-def isvalid(id):
-    return gdata(id).status_code == 200
-
-def ensurevalid(id):
-    status = gdata(id).status_code
-    if status == 404:
-        raise NotFoundError('Video %s does not exist' %id)
-    if status == 400:
-        raise InvalidIdError('Video %s is invalid' %id)
-
 def gdata(id):
     url = 'http://gdata.youtube.com/feeds/api/videos/%s' %id
     return requests.get(url) #FIXME: for now...
 
 def _yt(id):
-    ensurevalid(id)
+    status = gdata(id).status_code
+    if status == 404:
+        raise NotFoundError('Video %s does not exist' %id)
+    if status == 400:
+        raise InvalidIdError('Video %s is invalid' %id)
     yt = pytube.YouTube()
     yt.url = "http://www.youtube.com/watch?v=%s" %id
     return yt
@@ -52,3 +46,15 @@ def stream_url(id, resolution=None, extension=None):
                             %('/'.join([resolution,extension]), id))
     return {'url': stream['url'],
             'filename': stream['filename']+'.'+stream['extension']}
+
+def audio_binary(id):
+    """
+    Should be able to stram the audio of a video, on-the-fly,
+    using something like
+    cmd = 'ffmpeg -i - -acodec libmp3lame -aq 4 -' #aq=4?
+    video = requests.get(url, stream=True)
+    audio = subprocess.open(cmd, stdin=video, stdout=subprocess.PIPE)
+    for chunk in audio.stdout:
+        yield chunk
+    """
+    raise NotImplementedError

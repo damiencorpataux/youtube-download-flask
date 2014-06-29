@@ -27,8 +27,10 @@ def download_by_id(id, resolution=None, extension=None):
 
 @app.errorhandler(Exception)
 def error(e):
-    #FIXME: this is not catching anyting
-    if False:#app.debug:
+    #FIXME: in fact, it should only display json error for api calls;
+    #       else: the werkzeug-debug-page in debug mode,
+    #       otherwise, a nice non-400 error html page.
+    if app.debug:
         raise
     else:
         return flask.jsonify({'error': str(e)})
